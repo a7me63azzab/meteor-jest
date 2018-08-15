@@ -18,6 +18,11 @@ import '../imports/ui/jokes/jokes.html'
 import '../imports/ui/jokes/jokes.css'
 import '../imports/ui/jokes/jokes'
 
+// IMPORT JOKEFORM
+import '../imports/ui/jokeForm/jokeForm.css'
+import '../imports/ui/jokeForm/jokeForm.html'
+import '../imports/ui/jokeForm/jokeForm.js'
+
 //IMPORT LOGIN UI
 import '../imports/ui/login/login.html'
 import '../imports/ui/login/login.css'

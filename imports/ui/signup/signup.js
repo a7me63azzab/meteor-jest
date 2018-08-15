@@ -4,16 +4,16 @@ Template.signup.rendered = function(){
 
 Template.signup.events({
     "submit .from-signup": function(event){
-        var userName = trimInput(event.target.username.value);
+        var username = trimInput(event.target.username.value);
         var email = event.target.email.value;
         var password = event.target.password.value;
         var passwordConfirm = event.target.password2.value;
         
-        if(isNotEmpty(userName) && isNotEmpty(email) 
+        if(isNotEmpty(username) && isNotEmpty(email) 
               && isNotEmpty(password) && isEmail(email) && areValidPasswords(password, passwordConfirm)){
                     // Create new user
                     Accounts.createUser({
-                        userName: userName,
+                        username: username,
                         email: email,
                         password: password,
                         profile:{
