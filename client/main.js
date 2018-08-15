@@ -48,6 +48,10 @@ import '../imports/ui/search/search.css'
 import '../imports/ui/search/search.html'
 import '../imports/ui/search/search.js'
 
+// Subscriptions
+import '../lib/subscriptions/jokes.subscribe'
+
+
 //Routes
 import '../lib/routers/routes'
 
