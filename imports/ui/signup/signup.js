@@ -17,7 +17,10 @@ Template.signup.events({
                         email: email,
                         password: password,
                         profile:{
-
+                            laughScore:0,
+                            frownScore:0,
+                            pukeScore:0,
+                            voted:[]
                         }
                     }, function(err){
                         if(err){

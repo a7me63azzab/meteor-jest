@@ -19,12 +19,63 @@ Template.jokes.helpers({
 
 Template.jokes.events({
     'click #laugh':function(){
-        Bert.alert('You Clicked A Laugh','success','growl-top-right');
+        var thisUser = Meteor.userId();
+        var jokeId = Jokes.findOne({_id:this._id})._id;
+        var jokeAuthorId = Jokes.findOne({_id:this._id}).userId;
+        var userName = Meteor.user().username;
+        var votedUsers = Jokes.findOne({_id:this._id},{voted:{$in:userName}}).voted;
+         
+        if(votedUsers.indexOf(userName) > -1){
+            Bert.alert('You already voted at this joke before.','danger','growl-top-right');
+        }else{
+            Meteor.call('countVote',jokeId, userName);
+            Meteor.call('userPointLaugh',jokeAuthorId);
+            Meteor.call('laughVote',thisUser,jokeId);
+            Bert.alert('You\'r vote was palced','success','growl-top-right');
+        }
+
+        if(userName == votedUsers){
+            Bert.alert('You can not vote for your own joke.','danger','growl-top-right');
+        }
     },
     'click #frown':function(){
-        Bert.alert('You Clicked A Frown','success','growl-top-right');
+        var thisUser = Meteor.userId();
+        var jokeId = Jokes.findOne({_id:this._id})._id;
+        var jokeAuthorId = Jokes.findOne({_id:this._id}).userId;
+        var userName = Meteor.user().username;
+        var votedUsers = Jokes.findOne({_id:this._id},{voted:{$in:userName}}).voted;
+         
+        if(votedUsers.indexOf(userName) > -1){
+            Bert.alert('You already voted at this joke before.','danger','growl-top-right');
+        }else{
+            Meteor.call('countVote',jokeId, userName);
+            Meteor.call('userPointFrown',jokeAuthorId);
+            Meteor.call('frownVote',thisUser,jokeId);
+            Bert.alert('You\'r vote was palced','success','growl-top-right');
+        }
+
+        if(userName == votedUsers){
+            Bert.alert('You can not vote for your own joke.','danger','growl-top-right');
+        }
     },
     'click #puke':function(){
-        Bert.alert('You Clicked A Puke','success','growl-top-right');
+        var thisUser = Meteor.userId();
+        var jokeId = Jokes.findOne({_id:this._id})._id;
+        var jokeAuthorId = Jokes.findOne({_id:this._id}).userId;
+        var userName = Meteor.user().username;
+        var votedUsers = Jokes.findOne({_id:this._id},{voted:{$in:userName}}).voted;
+         
+        if(votedUsers.indexOf(userName) > -1){
+            Bert.alert('You already voted at this joke before.','danger','growl-top-right');
+        }else{
+            Meteor.call('countVote',jokeId, userName);
+            Meteor.call('userPointPuke',jokeAuthorId);
+            Meteor.call('pukeVote',thisUser,jokeId);
+            Bert.alert('You\'r vote was palced','success','growl-top-right');
+        }
+
+        if(userName == votedUsers){
+            Bert.alert('You can not vote for your own joke.','danger','growl-top-right');
+        }
     },
 })
